@@ -18,7 +18,25 @@
     nixpkgs,
     zine,
     ...
-  }: {
+  }: let
+    systems = ["x86_64-linux" "x86_64-darwin"];
+    forAllSystems = f: builtins.listToAttrs (map (system: {name = system; value = f system;}) systems);
+  in {
+    devShells = forAllSystems (system: let
+      pkgs = import nixpkgs {inherit system;};
+      zine-pkg =
+        if system == "x86_64-darwin"
+        then
+          zine.packages.${system}.default.overrideAttrs {
+            dontAutoPatchelf = true;
+          }
+        else zine.packages.${system}.zine;
+    in {
+      default = pkgs.mkShell {
+        packages = [zine-pkg];
+      };
+    });
+
     packages.x86_64-linux.default = let
       pkgs = import nixpkgs {system = "x86_64-linux";};
     in
