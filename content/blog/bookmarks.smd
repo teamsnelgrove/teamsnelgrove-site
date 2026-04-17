@@ -1,0 +1,73 @@
+---
+.title = "Why bookmarks never feel useful",
+.date = @date("2026-03-14T00:00:00"),
+.author = "Peter Snelgrove",
+.layout = "post.shtml",
+.draft = false,
+--- 
+
+Problems
+
+- Bookmarks have a taxonomy problem.
+- Search sucks because you can't search content.
+- There is not a clear next-action or job for the bookmark.
+- Too many tabs. If you close the tab it's lost forever! Thank god for restored tabs after a browser crash. Writing this down I had flashbacks to a time when this wasn't true.
+- Brower sync features try to counter this on both fronts.
+
+What are the usecases?
+
+## Favorites
+
+The goal is to optimize simple taxonomies for common workflows.
+
+- Save a few seconds from typing a search
+- Search "feels" cheap but is cummulatively more expensive.
+- Only works for links that are themselves indexes like a top level domain or a table of contents.
+- Often implemented as a folder rather than a property or tag.
+
+### Limitations
+
+Taxonomies are hard! Selecting the features and heirarchy is usually grounded in the context of the moment. Seemingling trivial changes and result in large reorganizations of the tree. One of my favorite topics to discuss with the biologists in my social sphere is what flame wars they were part of that involved in. They all seem to have a story about them or a professor that was on one side of a debate splitting hairs. The drama is real. Apparently friendships have ended over this kind of stuff.
+
+Placing information in a tree requires adopting a given perspective. You must choose the criteria that determines the heirarchy _a priori_. Trees are very fast and space efficient because they are optimized structures. The computer scientist behind the relational model [Edgar Codd](https://en.wikipedia.org/wiki/Edgar_F._Codd) famously critiqued trees for their [lack of flexibility](https://www.seas.upenn.edu/~zives/03f/cis550/codd.pdf) to changing requirements. The major insight was that if you store your table in flat table like structures and organize your data with some common rules, you don't need to know the requirements (within limits) before hand. To boot, you can still have the very efficient trees as projection off the original data. This approach was the foundation being 
+
+Beyond the structural limitations of trees, I personally can only hold so much in my head and what's there changes at unpredictable intervals. I'm also terrible at review so my ability to curate and thing deeply about the shifting degrees of focus don't work well for a tree.
+
+## Reading list
+
+This most commonly manifests as a reading list in web browsers. I find that my reading list always grows and I never seem to come back to it. One possible explaination for this is the lack of context. A pile of heterogenous links, ordered by time, is hardly a complete narrative.
+
+Much like my bookshelf, there's always more that I want to read than there is time to read. One of the more depressing thoughts I regularly have is the reminder that there is a mostly fixed number of books I'll read in my life. For some reason that unit of measure is very salient to me even when I could apply the same logic to just about anything. Then there's the false sense of productivity and pursuit of mastery that feeds into this anxiety of needing to capture and continue the thought process. Most of the time I don't actually care to continue pulling the thread of inquiry but mostly see that in hindsight after the hyperfocus wears off. But as often as not, I'm usually still interested in a core topic and that'll natually come back up in the future. I'm always surprising when I go back through my bookmarks and I can see the traces of these spurious engagements peaking through the pile.
+
+The firehose of content demanding our attention is the main driver for our desire to delegate our consumption to LLMs. It shows the cracks in the facade and reveals how outclassed we are in the face of the adversarial onslaught of the attention economy. The use of LLMs to reverse the scaling factor of AI slop will always be depressingly funny to me. This is where I come back to the framing in Ivan Illich's Tools of Conviviality. Do you use the tool or is the tool using you? I see the value and want to use the tool. How do I prevent that usage from becoming a enabler to feed into addictive consumption behaviors?
+
+The main emotional distinction between a bookmark and an item on the queue is the feeling that I want to continue to engage with a topic. The natural problem being there's a branching factor at play and the next things I want to read are part of a larger continuity of attention that I want to pick up and purpuse at some later date.
+
+### Idle thoughts...
+
+How is an RSS feed any different than a manually curated reading list? For me there's an ironic preference to reading the RSS feed because it's more novel. The curated reading list is a job and an implicit commitment. Even if I do want to do it we're now in procrastication territory.
+
+## Reminder / todo
+
+A bookmark in this case feels like a poorly managed inbox that I don't know how to route to a better place. 
+
+- Consume the content (Reading list)
+- Mine for ideas or inspiration (Enrichment / Inquery)
+- Needed for instructions (Project)
+- As reference example or supporting evidence (Project)
+- Is specification or manual (archived for someday/maybe).
+
+
+## Archival
+
+This overlaps with a Favorite with the major difference being the frequency of use. Aside from the initial flurry of use after purchase, during a project or scheduled maintanence, I don't go back to my lawn mower manual for fun. But if I lose it or it takes a long time to find the manual during a moment of urgency, it can be a real problem. It certainly is demotivating enough for encourage procrastication. I've also found that companies do a pretty bad job of making manuals easy to find.
+
+
+## History
+
+Why not store every page I visit during a period of reading and then prune the history after the fact? Text is cheap. Imagine toggling between reading modes and then capturing the session. You could pause, resume and merge sessions. Tie them into thematic cores.
+
+Use the Zotero connector for archiving. https://github.com/zotero/zotero-connectors/blob/master/README.md
+https://www.zotero.org/support/adding_items_to_zotero#web_translators
+Create copy of the page with a HTML to Markdown converter. Or strip tags to pass to LLM for indexing.
+https://github.com/simonw/strip-tags
