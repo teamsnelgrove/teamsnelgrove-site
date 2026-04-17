@@ -90,13 +90,13 @@
       "locked": {
         "lastModified": 1767714497,
         "narHash": "sha256-EYbh12Nbdggjy62Si0VsBCwtr4crSNumIOIqoDNoX9M=",
-        "owner": "trevorriles",
+        "owner": "teamsnelgrove",
         "repo": "zine",
         "rev": "e198775d2fcdbf4a316377b9ea5a27abd28a9201",
         "type": "github"
       },
       "original": {
-        "owner": "trevorriles",
+        "owner": "teamsnelgrove",
         "ref": "fix-nix-flake",
         "repo": "zine",
         "type": "github"

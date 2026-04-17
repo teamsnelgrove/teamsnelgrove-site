@@ -8,7 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zine = {
-      url = "github:trevorriles/zine/fix-nix-flake";
+      url = "github:teamsnelgrove/zine/fix-nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.zig2nix.follows = "zig2nix";
     };
