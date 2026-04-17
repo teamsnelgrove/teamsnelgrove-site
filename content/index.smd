@@ -72,16 +72,6 @@ and the page in your browser to refresh**.
 
 You can learn more about SuperMD and SuperHTML in [/about/](/about/).
 
-Lastly, this sample website also includes the following asset files:
-
-- `assets/style.css`
-- `assets/hightlight.css`
-- `assets/under-construction.gif`
-- `assets/katex-tag.js`
-- `assets/katex0.16.21.css`
-- `assets/katex0.16.21.js`
-- `content/blog/first-post/fanzine.jpg`
-
 The first few asset files are **site assets**, while the last is a **page asset** that belongs to the "first post" page.
 
 The Zine docs contain more information about [dealing with assets](https://zine-ssg.io/docs/assets/).
