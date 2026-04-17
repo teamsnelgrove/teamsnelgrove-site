@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     zig2nix = {
-      url = "github:Cloudef/zig2nix";
+      url = "github:Cloudef/zig2nix/4cba116e74f5a9c9295c6e11a40baed18214d744";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zine = {
