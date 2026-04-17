@@ -17,10 +17,17 @@ jobs:
       - name: Build site
         run: nix build
 
+      - name: Connect to Tailscale
+        uses: tailscale/github-action@v3
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+          tags: tag:ci
+
       - name: Deploy via rsync
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          echo "${{ secrets.LUFFY_KNOWN_HOST }}" >> ~/.ssh/known_hosts
-          rsync -avz --delete result/ peter@${{ secrets.LUFFY_HOST }}:/srv/html/teamsnelgrove/
+          ssh-keyscan zoro >> ~/.ssh/known_hosts
+          rsync -avz --delete result/ peter@zoro:/srv/html/teamsnelgrove/

@@ -5,4 +5,4 @@ build:
     nix build
 
 deploy: build
-    rsync -avz --delete result/ peter@luffy:/srv/html/teamsnelgrove/
+    rsync -avz --delete result/ peter@zoro:/srv/html/teamsnelgrove/
