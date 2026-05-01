@@ -3,7 +3,7 @@
 </head>
 <body id="body">
 	<article>
-		<h1 :text="$page.title"></h1>
+		<h1 class="writings-title" :text="$page.title"></h1>
 		<div :html="$page.content()"></div>
 	</article>
 </body>

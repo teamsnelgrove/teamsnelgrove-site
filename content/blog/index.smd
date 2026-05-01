@@ -1,7 +1,7 @@
 ---
-.title = "Blog",
+.title = "Thoughts",
 .date = @date("1990-01-01T00:00:00"),
-.author = "Sample Author",
+.author = "Peter Snelgrove",
 .layout = "blog.shtml",
 .alternatives = [{ 
     .name = "rss",
