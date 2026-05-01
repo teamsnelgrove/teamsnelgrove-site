@@ -1,15 +1,14 @@
 <extend template="base.shtml">
 <head id="head"></head>
 <body id="body">
-	<h1 :text="$page.title"></h1>
-	<div class="copy-content" :html="$page.content()"></div>
-	<div>
-		<h2>Post list</h2>
-		<div :loop="$page.subpages()">
-			<span class="date" :text="$loop.it.date.format('January 02, 2006')"></span>
-			<a class="title" href="$loop.it.link()">
-				<h3 :text="$loop.it.title"></h3>
-			</a>
-		</div>
-	</div>
+	<section>
+		<h1 class="writings-title" :text="$page.title"></h1>
+		<ul class="post-list" :loop="$page.subpages()">
+			<li>
+				<a class="title" href="$loop.it.link()" :text="$loop.it.title"></a>
+				<span class="leader" aria-hidden="true"></span>
+				<time class="date" :text="$loop.it.date.format('Jan 2006')"></time>
+			</li>
+		</ul>
+	</section>
 </body>

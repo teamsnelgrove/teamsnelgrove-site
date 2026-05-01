@@ -41,43 +41,15 @@ p {
    ========================================================================== */
 
 :root {
-  /* Catppuccin Latte palette */
-  --ctp-rosewater: #dc8a78;
-  --ctp-flamingo:  #dd7878;
-  --ctp-pink:      #ea76cb;
-  --ctp-mauve:     #8839ef;
-  --ctp-red:       #d20f39;
-  --ctp-maroon:    #e64553;
-  --ctp-peach:     #fe640b;
-  --ctp-yellow:    #df8e1d;
-  --ctp-green:     #40a02b;
-  --ctp-teal:      #179299;
-  --ctp-sky:       #04a5e5;
-  --ctp-sapphire:  #209fb5;
-  --ctp-blue:      #1e66f5;
-  --ctp-lavender:  #7287fd;
-  --ctp-text:      #4c4f69;
-  --ctp-subtext1:  #5c5f77;
-  --ctp-subtext0:  #6c6f85;
-  --ctp-overlay2:  #7c7f93;
-  --ctp-overlay1:  #8c8fa1;
-  --ctp-overlay0:  #9ca0b0;
-  --ctp-surface2:  #acb0be;
-  --ctp-surface1:  #bcc0cc;
-  --ctp-surface0:  #ccd0da;
-  --ctp-base:      #eff1f5;
-  --ctp-mantle:    #e6e9ef;
-  --ctp-crust:     #dce0e8;
+  --color-bg:      #fff;
+  --color-text:    #000;
+  --color-heading: #15171a;
+  --color-link:    #1e66f5;
+  --color-muted:   #6c6f85;
+  --color-rule:    #bcc0cc;
+  --color-code-bg: #e6e9ef;
 
-  /* Semantic tokens (mapped to Latte) */
-  --color-bg:    var(--ctp-base);
-  --color-text:  var(--ctp-text);
-  --color-link:  var(--ctp-blue);
-  --color-muted: var(--ctp-subtext0);
-  --color-rule:  var(--ctp-surface1);
-  --color-code-bg: var(--ctp-mantle);
-
-  /* Highlight underline for in-content links (andrewconner.com style) */
+  /* In-content link highlight underline */
   --content-link-color:       rgba(56, 156, 255, .15);
   --content-link-color-hover: rgba(56, 156, 255, .4);
 
@@ -110,12 +82,17 @@ p {
    ========================================================================== */
 
 body {
-  /* background-color: var(--color-bg); */
+  background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-serif);
   font-size: var(--text-base);
   padding-block: var(--space-5);
   padding-inline: var(--space-4);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-heading);
+  font-weight: 400;
 }
 
 h1 {
@@ -134,6 +111,7 @@ h2 {
 h3 {
   font-size: var(--text-lg);
   line-height: 1.25;
+  font-weight: 500;
   margin-block-end: var(--space-2);
   margin-block-start: var(--space-4);
 }
@@ -141,6 +119,7 @@ h3 {
 h4, h5, h6 {
   font-size: var(--text-base);
   line-height: 1.3;
+  font-weight: 500;
   margin-block-end: var(--space-2);
   margin-block-start: var(--space-3);
 }
@@ -236,11 +215,9 @@ body {
   align-items: center;
 }
 
-/* Site header: site title + nav */
 .site-title {
   font-size: var(--text-xl);
-  font-weight: normal;
-  letter-spacing: 0.02em;
+  font-weight: 400;
   margin-block-end: var(--space-2);
   text-align: center;
 }
@@ -260,16 +237,28 @@ nav {
   }
 }
 
-main, article {
+main, article, section {
   width: min(var(--measure), 100%);
 }
 
 footer {
   width: min(var(--measure), 100%);
   margin-block-start: var(--space-6);
+  padding-block: var(--space-6);
   color: var(--color-muted);
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   text-align: center;
+  white-space: nowrap;
+
+  & a {
+    color: var(--color-text);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
+    }
+  }
 
   & h5 {
     font-size: var(--text-sm);
@@ -280,23 +269,12 @@ footer {
   }
 }
 
-/* Page h1 (content pages — not site-title) */
-body > h1 {
-  width: min(var(--measure), 100%);
-}
-
-/* The wrapping div Zine emits for page content */
-body > div {
-  width: min(var(--measure), 100%);
-}
-
 /* ==========================================================================
    5. Components
    ========================================================================== */
 
-/* --- In-content links (andrewconner.com-style highlight underline) --- */
-
-.copy-content a {
+/* In-content links (highlight underline). Scoped to article prose. */
+article a {
   color: var(--color-text);
   text-decoration: underline;
   text-decoration-color: var(--content-link-color);
@@ -312,48 +290,53 @@ body > div {
   }
 }
 
-/* --- Post listing (blog index and devlog archive) --- */
+/* Blog index */
+
+.writings-title {
+  font-size: var(--text-xl);
+  font-weight: normal;
+  text-align: center;
+  margin-block: var(--space-5) var(--space-4);
+}
 
 .post-list {
-  margin-block-start: var(--space-4);
-}
+  list-style: none;
+  padding: 0;
+  margin: 0;
 
-/* Each listing item: date above title */
-:where(.post-list) > div,
-:where(body > div) > div:has(.date) {
-  margin-block-end: var(--space-4);
-}
-
-.date {
-  display: block;
-  font-size: var(--text-sm);
-  color: var(--color-muted);
-}
-
-a.title {
-  color: var(--color-text);
-  text-decoration: none;
-  display: block;
-
-  & h3 {
-    margin-block-start: var(--space-1);
-    margin-block-end: 0;
-    font-size: var(--text-lg);
-    font-weight: bold;
+  & li {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    margin-block-end: var(--space-2);
   }
 
-  &:hover {
-    color: var(--color-link);
+  & .title {
+    color: var(--color-text);
     text-decoration: none;
+    flex-shrink: 0;
 
-    & h3 {
+    &:hover {
       text-decoration: underline;
       text-underline-offset: 0.15em;
     }
   }
+
+  & .leader {
+    flex: 1;
+    border-block-end: 1px dotted var(--color-rule);
+    transform: translateY(-0.25em);
+    min-width: var(--space-4);
+  }
+
+  & .date {
+    color: var(--color-muted);
+    font-size: var(--text-sm);
+    flex-shrink: 0;
+  }
 }
 
-/* --- Blog post body --- */
+/* Blog post body */
 
 .post {
   display: flex;
@@ -361,9 +344,10 @@ a.title {
   gap: var(--space-3);
 }
 
-/* --- Prev/next post navigation --- */
+/* Prev/next post navigation */
 
-#prev-next {
+.prev-next {
+  width: min(var(--measure), 100%);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -372,62 +356,6 @@ a.title {
   padding-block-start: var(--space-4);
   border-block-start: 1px solid var(--color-rule);
   font-size: var(--text-sm);
-}
-
-/* --- Devlog feed --- */
-
-.feed {
-  margin-block-start: var(--space-5);
-}
-
-.feed > div {
-  margin-block-end: var(--space-5);
-  padding-block: var(--space-3);
-  padding-inline: var(--space-3);
-  margin-inline: calc(-1 * var(--space-3));
-  border-radius: var(--radius);
-
-  & > span {
-    display: block;
-    font-size: var(--text-sm);
-    color: var(--color-muted);
-  }
-
-  & > h2 {
-    margin-block-start: var(--space-1);
-    font-size: var(--text-lg);
-
-    & a {
-      color: var(--color-text);
-      text-decoration: none;
-
-      &:hover {
-        color: var(--color-link);
-      }
-    }
-  }
-
-  /* Anchor-targeted entry highlight */
-  &[id]:target {
-    background-color: color-mix(in srgb, var(--color-link) 8%, var(--color-bg));
-    animation: pulse-entry 2s ease-in-out 1 forwards;
-  }
-}
-
-@keyframes pulse-entry {
-  0%, 100% {
-    background-color: color-mix(in srgb, var(--color-link) 8%, var(--color-bg));
-  }
-  50% {
-    background-color: color-mix(in srgb, var(--color-link) 16%, var(--color-bg));
-  }
-}
-
-/* --- Devlog "about" intro section --- */
-
-.feed ~ div,
-body > div:not(.feed):not(.post) {
-  color: var(--color-muted);
 }
 
 /* ==========================================================================
@@ -440,6 +368,22 @@ body > div:not(.feed):not(.post) {
 */
 
 pre code {
+  /* Catppuccin Latte palette — scoped to code blocks only */
+  --ctp-rosewater: #dc8a78;
+  --ctp-pink:      #ea76cb;
+  --ctp-mauve:     #8839ef;
+  --ctp-red:       #d20f39;
+  --ctp-maroon:    #e64553;
+  --ctp-peach:     #fe640b;
+  --ctp-yellow:    #df8e1d;
+  --ctp-green:     #40a02b;
+  --ctp-teal:      #179299;
+  --ctp-sky:       #04a5e5;
+  --ctp-sapphire:  #209fb5;
+  --ctp-blue:      #1e66f5;
+  --ctp-text:      #4c4f69;
+  --ctp-overlay2:  #7c7f93;
+
   color: var(--ctp-text);
 
   & .keyword,
