@@ -1,5 +1,5 @@
 Site {
-    .title = "Team Snelgrove",
+    .title = "Peter Snelgrove",
     .host_url = "https://teamsnelgrove.com",
     .content_dir_path = "content",
     .layouts_dir_path = "layouts",
