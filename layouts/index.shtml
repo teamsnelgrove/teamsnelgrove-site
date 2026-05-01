@@ -3,5 +3,5 @@
 </head>
 <body id="body">
 	<h1 :text="$page.title"></h1>
-	<div :html="$page.content()"></div>
+	<div class="copy-content" :html="$page.content()"></div>
 </body>

@@ -1,0 +1,523 @@
+/* ==========================================================================
+   1. Reset (Josh Comeau style)
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+:where(body, h1, h2, h3, h4, h5, h6, p, ul, ol, figure, blockquote) {
+  margin: 0;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* ==========================================================================
+   2. Design tokens
+   ========================================================================== */
+
+:root {
+  /* Catppuccin Latte palette */
+  --ctp-rosewater: #dc8a78;
+  --ctp-flamingo:  #dd7878;
+  --ctp-pink:      #ea76cb;
+  --ctp-mauve:     #8839ef;
+  --ctp-red:       #d20f39;
+  --ctp-maroon:    #e64553;
+  --ctp-peach:     #fe640b;
+  --ctp-yellow:    #df8e1d;
+  --ctp-green:     #40a02b;
+  --ctp-teal:      #179299;
+  --ctp-sky:       #04a5e5;
+  --ctp-sapphire:  #209fb5;
+  --ctp-blue:      #1e66f5;
+  --ctp-lavender:  #7287fd;
+  --ctp-text:      #4c4f69;
+  --ctp-subtext1:  #5c5f77;
+  --ctp-subtext0:  #6c6f85;
+  --ctp-overlay2:  #7c7f93;
+  --ctp-overlay1:  #8c8fa1;
+  --ctp-overlay0:  #9ca0b0;
+  --ctp-surface2:  #acb0be;
+  --ctp-surface1:  #bcc0cc;
+  --ctp-surface0:  #ccd0da;
+  --ctp-base:      #eff1f5;
+  --ctp-mantle:    #e6e9ef;
+  --ctp-crust:     #dce0e8;
+
+  /* Semantic tokens (mapped to Latte) */
+  --color-bg:    var(--ctp-base);
+  --color-text:  var(--ctp-text);
+  --color-link:  var(--ctp-blue);
+  --color-muted: var(--ctp-subtext0);
+  --color-rule:  var(--ctp-surface1);
+  --color-code-bg: var(--ctp-mantle);
+
+  /* Highlight underline for in-content links (andrewconner.com style) */
+  --content-link-color:       rgba(56, 156, 255, .15);
+  --content-link-color-hover: rgba(56, 156, 255, .4);
+
+  /* Spacing scale — fluid */
+  --space-1: clamp(0.25rem, 0.2rem + 0.25vw, 0.375rem);
+  --space-2: clamp(0.5rem,  0.4rem + 0.5vw,  0.75rem);
+  --space-3: clamp(0.75rem, 0.65rem + 0.5vw, 1rem);
+  --space-4: clamp(1rem,    0.85rem + 0.75vw, 1.5rem);
+  --space-5: clamp(1.5rem,  1.25rem + 1.25vw, 2.5rem);
+  --space-6: clamp(2.5rem,  2rem + 2.5vw,    4rem);
+
+  /* Type scale — fluid */
+  --text-sm:   clamp(0.8125rem, 0.78rem + 0.17vw, 0.9375rem);
+  --text-base: clamp(1rem,      0.95rem + 0.25vw,  1.125rem);
+  --text-lg:   clamp(1.125rem,  1.05rem + 0.375vw, 1.375rem);
+  --text-xl:   clamp(1.375rem,  1.2rem  + 0.875vw, 1.875rem);
+  --text-2xl:  clamp(1.75rem,   1.5rem  + 1.25vw,  2.5rem);
+
+  /* Font stacks */
+  --font-serif: Georgia, "Times New Roman", serif;
+  --font-mono:  ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
+
+  /* Layout */
+  --measure: 68ch;
+  --radius:  3px;
+}
+
+/* ==========================================================================
+   3. Base element styles
+   ========================================================================== */
+
+body {
+  /* background-color: var(--color-bg); */
+  color: var(--color-text);
+  font-family: var(--font-serif);
+  font-size: var(--text-base);
+  padding-block: var(--space-5);
+  padding-inline: var(--space-4);
+}
+
+h1 {
+  font-size: var(--text-2xl);
+  line-height: 1.15;
+  margin-block-end: var(--space-4);
+}
+
+h2 {
+  font-size: var(--text-xl);
+  line-height: 1.2;
+  margin-block-end: var(--space-3);
+  margin-block-start: var(--space-5);
+}
+
+h3 {
+  font-size: var(--text-lg);
+  line-height: 1.25;
+  margin-block-end: var(--space-2);
+  margin-block-start: var(--space-4);
+}
+
+h4, h5, h6 {
+  font-size: var(--text-base);
+  line-height: 1.3;
+  margin-block-end: var(--space-2);
+  margin-block-start: var(--space-3);
+}
+
+p {
+  margin-block-end: var(--space-3);
+
+  &:last-child {
+    margin-block-end: 0;
+  }
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+}
+
+ul, ol {
+  padding-inline-start: var(--space-4);
+  margin-block-end: var(--space-3);
+}
+
+li {
+  margin-block-end: var(--space-1);
+}
+
+blockquote {
+  border-inline-start: 3px solid var(--color-rule);
+  padding-inline-start: var(--space-3);
+  color: var(--color-muted);
+  font-style: italic;
+  margin-block: var(--space-3);
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  background-color: var(--color-code-bg);
+  padding: 0.1em 0.3em;
+  border-radius: var(--radius);
+}
+
+pre {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  background-color: var(--color-code-bg);
+  padding: var(--space-3);
+  border-radius: var(--radius);
+  overflow-x: auto;
+  margin-block: var(--space-3);
+
+  & code {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+  }
+}
+
+hr {
+  border: none;
+  border-block-start: 1px solid var(--color-rule);
+  margin-block: var(--space-5);
+}
+
+img {
+  border-radius: var(--radius);
+}
+
+figure {
+  margin-block: var(--space-4);
+
+  & figcaption {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+    font-style: italic;
+    text-align: center;
+    margin-block-start: var(--space-2);
+  }
+}
+
+/* ==========================================================================
+   4. Layout primitives
+   ========================================================================== */
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Site header: site title + nav */
+.site-title {
+  font-size: var(--text-xl);
+  font-weight: normal;
+  letter-spacing: 0.02em;
+  margin-block-end: var(--space-2);
+  text-align: center;
+}
+
+nav {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  text-align: center;
+  margin-block-end: var(--space-6);
+
+  & a {
+    color: var(--color-muted);
+
+    &:hover {
+      color: var(--color-text);
+    }
+  }
+}
+
+main, article {
+  width: min(var(--measure), 100%);
+}
+
+footer {
+  width: min(var(--measure), 100%);
+  margin-block-start: var(--space-6);
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+  text-align: center;
+
+  & h5 {
+    font-size: var(--text-sm);
+    font-weight: normal;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-block-start: var(--space-3);
+  }
+}
+
+/* Page h1 (content pages — not site-title) */
+body > h1 {
+  width: min(var(--measure), 100%);
+}
+
+/* The wrapping div Zine emits for page content */
+body > div {
+  width: min(var(--measure), 100%);
+}
+
+/* ==========================================================================
+   5. Components
+   ========================================================================== */
+
+/* --- In-content links (andrewconner.com-style highlight underline) --- */
+
+.copy-content a {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-decoration-color: var(--content-link-color);
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: 1rem;
+  text-underline-offset: -0.7rem;
+  transition: text-decoration 0.3s;
+
+  &:hover {
+    text-decoration-color: var(--content-link-color-hover);
+    text-decoration-thickness: 1.8rem;
+    text-underline-offset: -1.3rem;
+  }
+}
+
+/* --- Post listing (blog index and devlog archive) --- */
+
+.post-list {
+  margin-block-start: var(--space-4);
+}
+
+/* Each listing item: date above title */
+:where(.post-list) > div,
+:where(body > div) > div:has(.date) {
+  margin-block-end: var(--space-4);
+}
+
+.date {
+  display: block;
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+a.title {
+  color: var(--color-text);
+  text-decoration: none;
+  display: block;
+
+  & h3 {
+    margin-block-start: var(--space-1);
+    margin-block-end: 0;
+    font-size: var(--text-lg);
+    font-weight: bold;
+  }
+
+  &:hover {
+    color: var(--color-link);
+    text-decoration: none;
+
+    & h3 {
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
+    }
+  }
+}
+
+/* --- Blog post body --- */
+
+.post {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* --- Prev/next post navigation --- */
+
+#prev-next {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-block-start: var(--space-6);
+  padding-block-start: var(--space-4);
+  border-block-start: 1px solid var(--color-rule);
+  font-size: var(--text-sm);
+}
+
+/* --- Devlog feed --- */
+
+.feed {
+  margin-block-start: var(--space-5);
+}
+
+.feed > div {
+  margin-block-end: var(--space-5);
+  padding-block: var(--space-3);
+  padding-inline: var(--space-3);
+  margin-inline: calc(-1 * var(--space-3));
+  border-radius: var(--radius);
+
+  & > span {
+    display: block;
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+
+  & > h2 {
+    margin-block-start: var(--space-1);
+    font-size: var(--text-lg);
+
+    & a {
+      color: var(--color-text);
+      text-decoration: none;
+
+      &:hover {
+        color: var(--color-link);
+      }
+    }
+  }
+
+  /* Anchor-targeted entry highlight */
+  &[id]:target {
+    background-color: color-mix(in srgb, var(--color-link) 8%, var(--color-bg));
+    animation: pulse-entry 2s ease-in-out 1 forwards;
+  }
+}
+
+@keyframes pulse-entry {
+  0%, 100% {
+    background-color: color-mix(in srgb, var(--color-link) 8%, var(--color-bg));
+  }
+  50% {
+    background-color: color-mix(in srgb, var(--color-link) 16%, var(--color-bg));
+  }
+}
+
+/* --- Devlog "about" intro section --- */
+
+.feed ~ div,
+body > div:not(.feed):not(.post) {
+  color: var(--color-muted);
+}
+
+/* ==========================================================================
+   6. Syntax highlighting (Catppuccin Latte, via Zine flow-syntax)
+   ==========================================================================
+   Zine emits tree-sitter capture names as CSS classes on tokens inside
+   <code class="<lang>">. flow-syntax converts dots to underscores
+   (e.g. `punctuation.bracket` -> `.punctuation_bracket`). Capture names
+   are conventional across grammars, so one rule set covers all languages.
+*/
+
+pre code {
+  color: var(--ctp-text);
+
+  & .keyword,
+  & .keyword_control,
+  & .type_builtin {
+    color: var(--ctp-mauve);
+  }
+  & .keyword_control_conditional {
+    color: var(--ctp-mauve);
+    font-style: italic;
+  }
+  & .namespace {
+    color: var(--ctp-yellow);
+    font-style: italic;
+  }
+  & .type,
+  & .attribute {
+    color: var(--ctp-yellow);
+  }
+  & .type_enum_variant,
+  & .constant_character {
+    color: var(--ctp-teal);
+  }
+  & .constructor,
+  & .label {
+    color: var(--ctp-sapphire);
+  }
+  & .constant,
+  & .field {
+    color: var(--ctp-peach);
+  }
+  & .constant_character_escape,
+  & .string_regexp {
+    color: var(--ctp-pink);
+  }
+  & .string,
+  & .markup_raw {
+    color: var(--ctp-green);
+  }
+  & .string_special,
+  & .function,
+  & .tag,
+  & .special,
+  & .variable_other_member {
+    color: var(--ctp-blue);
+  }
+  & .string_special_symbol,
+  & .variable_builtin {
+    color: var(--ctp-red);
+  }
+  & .comment {
+    color: var(--ctp-overlay2);
+    font-style: italic;
+  }
+  & .variable {
+    color: var(--ctp-text);
+  }
+  & .variable_parameter {
+    color: var(--ctp-maroon);
+    font-style: italic;
+  }
+  & .punctuation,
+  & .punctuation_bracket,
+  & .punctuation_delimiter {
+    color: var(--ctp-overlay2);
+  }
+  & .punctuation_special,
+  & .operator {
+    color: var(--ctp-sky);
+  }
+  & .function_macro {
+    color: var(--ctp-rosewater);
+  }
+  /* Tree-sitter parse errors — declared last so it wins when combined
+     with another capture class (e.g. `class="error punctuation_bracket"`). */
+  & .error {
+    color: var(--ctp-red);
+    text-decoration: underline wavy var(--ctp-red);
+    text-underline-offset: 0.15em;
+  }
+}
